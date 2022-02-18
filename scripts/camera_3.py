@@ -4,9 +4,9 @@ import cv2
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge, CvBridgeError
 
-class Camera5:
+class Camera3:
     def __init__(self):
-        self.image_sub = rospy.Subscriber("/camera_5/camera_5/image_raw", Image, self.callback)
+        self.image_sub = rospy.Subscriber("/camera_3/camera_3/image_raw", Image, self.callback)
 
     def callback(self,data):
         bridge = CvBridge()
@@ -16,18 +16,18 @@ class Camera5:
         except CvBridgeError as e:
             rospy.logerr(e)
         
-        image4 = cv_image
+        image3 = cv_image
 
-        resized_image = cv2.resize(image4, (360, 640)) 
+        resized_image = cv2.resize(image3, (360, 640)) 
 
-        cv2.imshow("Camera output 5", image4)
+        cv2.imshow("Camera output 3", image3)
         #cv2.imshow("Camera output resized", resized_image)
 
         cv2.waitKey(3)
 
 
 def main():
-    Camera5()
+    Camera3()
 
     try:
         rospy.spin()
@@ -37,5 +37,5 @@ def main():
     cv2.destroyAllWindows()
 
 if __name__ == '__main__':
-    rospy.init_node('camera_5', anonymous=False)
+    rospy.init_node('camera_3', anonymous=False)
     main()
