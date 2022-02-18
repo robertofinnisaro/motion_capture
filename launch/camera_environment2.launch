@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
-<!-- 8 motion tracking cameras -->
+<!-- 4 motion tracking cameras -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="world_name" value="$(find motion_capture)/worlds/camera_environment.world"/>
+    <arg name="world_name" value="$(find motion_capture)/worlds/camera_environment2.world"/>
     <arg name="paused" value="false"/>
     <arg name="use_sim_time" value="true"/>
     <arg name="gui" value="true"/>
