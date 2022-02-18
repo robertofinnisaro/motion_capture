@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
+from matplotlib import image
 import rospy
 import cv2
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge, CvBridgeError
-import os
 
 class Camera1:
     def __init__(self):
@@ -16,7 +16,7 @@ class Camera1:
             cv_image = bridge.imgmsg_to_cv2(data, desired_encoding="bgr8")
         except CvBridgeError as e:
             rospy.logerr(e)
-        
+
         image1 = cv_image
 
         resized_image = cv2.resize(image1, (360, 640)) 
