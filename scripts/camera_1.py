@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-from matplotlib import image
 import rospy
 import cv2
 from sensor_msgs.msg import Image
@@ -21,6 +20,7 @@ class Camera1:
 
         resized_image = cv2.resize(image1, (360, 640)) 
 
+        cv2.moveWindow("Camera output 1", 20, 20)
         cv2.imshow("Camera output 1", image1)
         #cv2.imshow("Camera output resized", resized_image)
 

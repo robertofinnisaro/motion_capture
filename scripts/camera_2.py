@@ -20,6 +20,7 @@ class Camera2:
 
         resized_image = cv2.resize(image2, (360, 640)) 
 
+        cv2.moveWindow("Camera output 2", 340, 20)
         cv2.imshow("Camera output 2", image2)
         #cv2.imshow("Camera output resized", resized_image)
 
