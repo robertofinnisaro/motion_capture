@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <node
+        pkg="motion_capture"
+        type="cam_pub.py"
+        name="cam_pub"
+        output="screen"
+    />
+    <node
+        pkg="motion_capture"
+        type="cam_sub.py"
+        name="cam_sub"
+        output="screen"
+    />
+</launch>
