@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 
-from lib2to3.pgen2 import grammar
-from cv2 import grabCut
 import numpy as np
-import os
 import cv2
 from matplotlib import pyplot as plt
+from sensor_msgs.msg import Image
+from cv_bridge import CvBridge
+import rospy
 
 # defining the canny detector function
 
@@ -102,13 +102,20 @@ def Canny_detector(img, weak_th = None, strong_th = None):
 	# gradients of edges
 	return mag
 
-frame = cv2.imread("/home/rob/Documents/Wallpapers/0236.jpg")
+def callback(data):
+    br = CvBridge()
+    rospy.loginfo("receiving video frame")
+    current_frame = br.imgmsg_to_cv2(data)
+    current_frame = Canny_detector(current_frame)
+    cv2.imshow("camera", current_frame)
+    cv2.waitKey(1)
 
-# calling the designed function for
-# finding edges
-canny_img = Canny_detector(frame)
+def recieve_message():
+    rospy.init_node('video_sub_py', anonymous=True)
+    rospy.Subscriber('/camera_1/camera_1/image_raw', Image, callback)
+    # rospy.Subscriber('video_frames', Image, callback)
+    rospy.spin()
+    cv2.destroyAllWindows() 
 
-cv2.imshow('img', canny_img)
-
-cv2.waitKey(0)		
-cv2.destroyAllWindows()	
+if __name__ == '__main__':
+	recieve_message()
