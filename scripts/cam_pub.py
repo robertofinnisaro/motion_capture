@@ -18,7 +18,7 @@ def publish_message():
         ret, frame = cap.read()
 
         if ret == True:
-            rospy.loginfo('publishin video frame')
+            rospy.loginfo('publishing video frame')
             pub.publish(br.cv2_to_imgmsg(frame))
         rate.sleep()
 
