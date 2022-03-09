@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
 
+from threading import currentThread
 import numpy as np
 import cv2
 from matplotlib import pyplot as plt
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge
 import rospy
+
+
+br = CvBridge()
 
 # defining the canny detector function
 
@@ -102,18 +106,23 @@ def Canny_detector(img, weak_th = None, strong_th = None):
 	# gradients of edges
 	return mag
 
-def callback(data):
-    br = CvBridge()
+def callCam1(data):
     rospy.loginfo("receiving video frame")
     current_frame = br.imgmsg_to_cv2(data)
-    current_frame = Canny_detector(current_frame)
+    cam1_frame = Canny_detector(current_frame)
     cv2.imshow("camera", current_frame)
+    current_frame = cv2.resize(current_frame, (320, 240))
+    cv2.moveWindow("camera", 0, 1080)
+    cv2.imshow("canny camera", cam1_frame)
+    cam1_frame = cv2.resize(cam1_frame, (320, 240))
+    cv2.moveWindow("canny camera", 370, 1080)
     cv2.waitKey(1)
 
 def recieve_message():
     rospy.init_node('video_sub_py', anonymous=True)
-    rospy.Subscriber('/camera_1/camera_1/image_raw', Image, callback)
+    rospy.Subscriber('/camera_1/camera_1/image_raw', Image, callCam1)
     # rospy.Subscriber('video_frames', Image, callback)
+
     rospy.spin()
     cv2.destroyAllWindows() 
 
