@@ -13,8 +13,8 @@ def cvshow(name, img):
 
 def sift_kp(image):
     gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    sift = cv2.xfeatures2d.SIFT_create()
-    sift = cv2.xfeatures2d.SIFT_create()
+    sift = cv2.SIFT_create()
+    sift = cv2.SIFT_create()
     kp, des = sift.detectAndCompute(image, None)
     kp_image = cv2.drawKeypoints(gray_image, kp, None)
     return kp_image, kp, des
@@ -76,39 +76,3 @@ def siftimg_rightlignment(img_right, img_left):
         # Pass the picture left to the left end of the result picture
         result[0:img_left.shape[0], 0:img_left.shape[1]] = img_left
         return result
-
-
-# Feature matching + panoramic stitching
-import numpy as np
-import cv2
-
-# Read the stitched pictures (note the placement of the left and right pictures)
-# Is to transform the graphics on the right
-img_left = cv2.imread('/home/rob/Documents/test1.png')
-img_right = cv2.imread('/home/rob/Documents/test2.png')
-
-img_left1 = cv2.imread('/home/rob/Documents/test1.png')
-img_right1 = cv2.imread('/home/rob/Documents/test2.png')
-
-img_right = cv2.resize(img_right, None, fx=0.5, fy=0.3)
-# Ensure that the two images are the same size
-img_left = cv2.resize(img_left, (img_right.shape[1], img_right.shape[0]))
-
-kpimg_right, kp1, des1 = sift_kp(img_right)
-kpimg_left, kp2, des2 = sift_kp(img_left)
-
-# Display the original image and the image after key point detection at the same time
-cvshow('img_left', np.hstack((img_left, kpimg_left)))
-cvshow('img_right', np.hstack((img_right, kpimg_right)))
-goodMatch = get_good_match(des1, des2)
-all_goodmatch_img = cv2.drawMatches(img_right, kp1, img_left, kp2, goodMatch, None, flags=2)
-
-# goodmatch_img Set the first goodMatch[:10]
-goodmatch_img = cv2.drawMatches(img_right, kp1, img_left, kp2, goodMatch[:10], None, flags=2)
-
-cvshow('Keypoint Matches1', all_goodmatch_img)
-cvshow('Keypoint Matches2', goodmatch_img)
-
-# Stitch the picture into a panorama
-result = siftimg_rightlignment(img_right, img_left)
-cvshow('result', result)
