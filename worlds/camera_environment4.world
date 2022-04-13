@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <sdf version="1.7">
     <world name="default">
-        <!-- <<gui>
+        <gui>
             <camera name="user_camera">
                 <pose>22.7074 12.8037 17.5966 0 0.491643 -2.63018</pose>
                 <view_controller>orbit</view_controller>
@@ -34,11 +34,7 @@
             </attenuation>
             <cast_shadows>0</cast_shadows>
             <direction>0 0 -1</direction>
-        </light>> -->
-
-        <include>
-            <uri>model://sun</uri>
-        </include>
+        </light>
 
         <include>
             <uri>model://ground_plane</uri>
@@ -48,7 +44,7 @@
             <uri>model://environment</uri>
         </include>
 
-        <!-- <state world_name="default">
+        <state world_name="default">
             <model name='depth_camera'>
                 <pose>5 5 10 0 0.95539323 3.92699</pose>
                 <scale>1 1 1</scale>
@@ -190,6 +186,6 @@
             </link>
             <static>1</static>
             <allow_auto_disable>1</allow_auto_disable>
-        </model>    -->
+        </model>   
     </world>
 </sdf>
