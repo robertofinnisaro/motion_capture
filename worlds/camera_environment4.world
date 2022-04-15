@@ -23,7 +23,7 @@
 
         <include>
             <uri>model://kinect</uri>
-            <pose>5 5 10 0 0.95539323 3.92699</pose>
+            <pose>0 0 2 0 1.5707 0</pose>
         </include>
         
     </world>
