@@ -13,9 +13,8 @@
     <arg name="debug" value="false"/>
   </include>
 
-  <include file="$(find motion_capture)/launch/camera_rviz.launch">
-    <arg name="rviz_config" value="$(find motion_capture)/launch/camera.rviz"/>
-    <arg name="debug" value="$(arg debug)"/>
-  </include>
+  <include file="$(find motion_capture)/launch/octomap.launch" />
+
+  <include file="$(find motion_capture)/launch/camera_rviz.launch" />
 
 </launch>
