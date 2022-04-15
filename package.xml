@@ -20,6 +20,9 @@
   <exec_depend>std_msgs</exec_depend>
   <depend>gazebo_ros</depend>
 
+  <build_depend>octomap</build_depend>
+  <exec_depend>octomap</exec_depend>
+
   <export>
     <gazebo_ros gazebo_model_path="${prefix}/models" />
     <gazebo_ros gazebo_media_path="${prefix}/worlds" />
