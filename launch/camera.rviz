@@ -92,7 +92,6 @@ Visualization Manager:
       Max. Octree Depth: 16
       Max. Height Display: inf
       Min. Height Displays: -inf
-      Unreliable: false
       Value: true
   Enabled: true
   Global Options:
