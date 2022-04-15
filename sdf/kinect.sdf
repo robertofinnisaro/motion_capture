@@ -61,6 +61,9 @@
           <focalLength>0</focalLength>
           <hackBaseline>0</hackBaseline>
         </plugin>
+        <always_on>1</always_on>
+        <update_rate>5</update_rate>
+        <visualize>1</visualize>
       </sensor>
     </link>
   </model>
