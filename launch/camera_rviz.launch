@@ -1,7 +1,7 @@
 <launch>
 
   <arg name="rviz" default="true" />
-  <arg name="rviz_file" default="$(find motion_capture)/launch/camera.rviz" />
+  <arg name="rviz_file" default="$(find motion_capture)/rviz/camera.rviz" />
   <node pkg="rviz" type="rviz" name="$(anon rviz)" args="-d $(arg rviz_file)" output="screen" if="$(arg rviz)" />
 
 </launch>
