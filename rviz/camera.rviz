@@ -129,8 +129,9 @@ Visualization Manager:
         Z: 0
       Name: Current View
       Near Clip Distance: 0.01
+      Invert Z Axis: false
       Pitch: 0
-      Target Frame: base_link
+      Target Frame: /camera_link
       Value: XYOrbit (rviz)
       Yaw: -1.5707
     Saved: ~
