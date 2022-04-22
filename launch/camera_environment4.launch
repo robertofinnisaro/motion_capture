@@ -4,18 +4,19 @@
   <arg name="debug" default="false" />
 
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="world_name" value="camera_environment4.world"/>
-    <arg name="paused" value="false"/>
-    <arg name="use_sim_time" value="true"/>
-    <arg name="gui" value="true"/>
-    <arg name="recording" value="false"/>
+    <arg name="world_name" value="camera_environment4.world" />
+    <arg name="paused" value="false" />
+    <arg name="use_sim_time" value="true" />
+    <arg name="gui" value="true" />
+    <arg name="recording" value="false" />
     <arg name="verbose" value="true" />
-    <arg name="debug" value="false"/>
+    <arg name="debug" value="false" />
   </include>
 
-  <include file="$(find motion_capture)/launch/camera_rviz.launch">
-    <arg name="rviz_config" value="$(find motion_capture)/launch/camera.rviz"/>
-    <arg name="debug" value="$(arg debug)"/>
-  </include>
+  <include file="$(find motion_capture)/launch/octomap.launch" />
+
+  <include file="$(find motion_capture)/launch/camera_rviz.launch" />
+
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-file $(find motion_capture)/sdf/rover_manipulator.sdf -sdf -z 1 -model rover_manipulator" />
 
 </launch>
